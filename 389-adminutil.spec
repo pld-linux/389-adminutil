@@ -11,10 +11,12 @@ Source0:	http://directory.fedoraproject.org/sources/%{name}-%{version}.tar.bz2
 # Source0-md5:	da96a9673ac983b79475fd9c51b663c3
 BuildRequires:	icu
 BuildRequires:	libicu-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	mozldap-devel
 BuildRequires:	nspr-devel
 BuildRequires:	nss-devel
-BuildRequires:	svrcore-devel
+BuildRequires:	perl-base
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
