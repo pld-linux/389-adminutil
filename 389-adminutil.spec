@@ -1,10 +1,14 @@
+# TODO
+# - merge with fedora-ds-admin.spec
 Summary:	Utility library for 389 administration
 Name:		389-adminutil
 Version:	1.1.9
 Release:	1
-License:	LGPLv2
+License:	LGPL v2
 Group:		Development/Libraries
 URL:		http://directory.fedoraproject.org/wiki/AdminUtil
+Source0:	http://directory.fedoraproject.org/sources/%{name}-%{version}.tar.bz2
+# Source0-md5:	da96a9673ac983b79475fd9c51b663c3
 BuildRequires:	icu
 BuildRequires:	libicu-devel
 BuildRequires:	mozldap-devel
@@ -12,13 +16,11 @@ BuildRequires:	nspr-devel
 BuildRequires:	nss-devel
 BuildRequires:	svrcore-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Source0:	http://directory.fedoraproject.org/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	da96a9673ac983b79475fd9c51b663c3
 
 %description
 389-adminutil is libraries of functions used to administer directory
-servers, usually in conjunction with the admin server. 389-adminutil is
-broken into two libraries - libadminutil contains the basic
+servers, usually in conjunction with the admin server. 389-adminutil
+is broken into two libraries - libadminutil contains the basic
 functionality, and libadmsslutil contains SSL versions and wrappers
 around the basic functions. The PSET functions allow applications to
 store their preferences and configuration parameters in LDAP, without
@@ -49,30 +51,31 @@ that use 389-adminutil.
 %setup -q
 
 %build
-
 %configure \
 	--disable-tests \
 
-%{__make} %{?_smp_mflags}
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__rm} -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT INSTALL="%{__install} -p"
+%{__make} install \
+	INSTALL="%{__install} -p" \
+	DESTDIR=$RPM_BUILD_ROOT
 %{__rm} -f $RPM_BUILD_ROOT%{_libdir}/lib*.a
 %{__rm} -f $RPM_BUILD_ROOT%{_libdir}/lib*.la
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc README NEWS
-%attr(755,root,root) %{_libdir}/*.so.*
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_datadir}/%{name}
 
 %files devel
