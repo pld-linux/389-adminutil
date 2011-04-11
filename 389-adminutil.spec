@@ -2,13 +2,13 @@
 # - merge with fedora-ds-admin.spec
 Summary:	Utility library for 389 administration
 Name:		389-adminutil
-Version:	1.1.9
+Version:	1.1.13
 Release:	1
 License:	LGPL v2
 Group:		Development/Libraries
 URL:		http://directory.fedoraproject.org/wiki/AdminUtil
 Source0:	http://directory.fedoraproject.org/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	da96a9673ac983b79475fd9c51b663c3
+# Source0-md5:	5e0bbf95c6a61eb69b5f620b28336eff
 BuildRequires:	icu
 BuildRequires:	libicu-devel
 BuildRequires:	libstdc++-devel
